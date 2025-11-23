@@ -12,21 +12,21 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 100);
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 ${
+      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-[9999] ${
         scrolled ? "bg-primary" : "bg-transparent"
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
-        {/* Logo + Name */}
+
+        {/* LOGO */}
         <Link
           to="/"
           className="flex items-center gap-2"
@@ -42,7 +42,7 @@ const Navbar = () => {
           </p>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* DESKTOP MENU */}
         <div className="hidden sm:flex items-center gap-8">
           <ul className="list-none flex flex-row gap-10">
             {navLinks.map((nav) => (
@@ -58,7 +58,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Social icons on right */}
+          {/* SOCIALS */}
           <div className="flex items-center gap-4 ml-4 text-white text-[22px]">
             <a
               href="https://github.com/Harshitdongarwar2528"
@@ -79,11 +79,11 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU */}
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <div
             onClick={() => setToggle(!toggle)}
-            className="cursor-pointer text-white text-[24px]"
+            className="cursor-pointer text-white text-[26px] z-[99999]"
           >
             {toggle ? <FaTimes /> : <FaBars />}
           </div>
@@ -91,9 +91,9 @@ const Navbar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[160px] z-10 rounded-xl`}
+            } p-6 black-gradient absolute top-20 right-3 min-w-[180px] z-[9999] rounded-xl`}
           >
-            <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
+            <ul className="list-none flex flex-col gap-4">
               {navLinks.map((nav) => (
                 <li
                   key={nav.id}
@@ -101,7 +101,7 @@ const Navbar = () => {
                     active === nav.title ? "text-white" : "text-secondary"
                   }`}
                   onClick={() => {
-                    setToggle(!toggle);
+                    setToggle(false);
                     setActive(nav.title);
                   }}
                 >
@@ -109,7 +109,7 @@ const Navbar = () => {
                 </li>
               ))}
 
-              {/* Mobile social icons */}
+              {/* SOCIAL ICONS */}
               <div className="flex gap-3 text-white mt-3 text-[20px]">
                 <a
                   href="https://github.com/Harshitdongarwar2528"

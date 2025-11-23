@@ -29,9 +29,10 @@ const Hero = () => {
       </section>
 
       {/* COMPUTER BELOW HERO TEXT */}
-      <div className=" h-[250px] -mt-20">
-        <ComputersCanvas />
-      </div>
+<div className="relative w-full h-[260px] mt-[-60px] overflow-visible pointer-events-none">
+  <ComputersCanvas />
+</div>
+
 
       {/* SCROLL INDICATOR */}
       <div className='w-full flex justify-center items-center mt-10'>
