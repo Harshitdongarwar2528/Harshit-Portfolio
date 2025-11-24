@@ -20,10 +20,12 @@ import {
   tesla,
   shopify,
   carrent,
+  Hotel,
   jobit,
   tripguide,
   threejs,
   logo,
+  github,
   
  
 } from "../assets";
@@ -79,18 +81,18 @@ const technologies = [
     name: "JavaScript",
     icon: javascript,
   },
-  {
-    name: "TypeScript",
-    icon: typescript,
-  },
+  // {
+  //   name: "TypeScript",
+  //   icon: typescript,
+  // },
   {
     name: "React JS",
     icon: reactjs,
   },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
+  // {
+  //   name: "Redux Toolkit",
+  //   icon: redux,
+  // },
   {
     name: "Tailwind CSS",
     icon: tailwind,
@@ -103,18 +105,18 @@ const technologies = [
     name: "MongoDB",
     icon: mongodb,
   },
-  {
-    name: "Three JS",
-    icon: threejs,
-  },
+  // {
+  //   name: "Three JS",
+  //   icon: threejs,
+  // },
   {
     name: "git",
     icon: git,
   },
-  {
-    name: "figma",
-    icon: figma,
-  },
+  // {
+  //   name: "figma",
+  //   icon: figma,
+  // },
   {
     name: "docker",
     icon: docker,
@@ -138,7 +140,7 @@ const experiences = [
   {
     title: "Web Application Developer",
     company_name: "Independent Projects",
-    icon: shopify,
+    icon: logo,
     iconBg: "#383E56",
     date: "Jan 2024 - May 2024",
     points: [
@@ -149,32 +151,20 @@ const experiences = [
     ],
   },
   {
-    title: "Internship Developer (IoT & Python)",
-    company_name: "Tech Internship Program",
-    icon: tesla,
-    iconBg: "#E6DEDD",
-    date: "July 2023 - Dec 2023",
-    points: [
-      "Developed IoT dashboards and automation scripts using Python and sensor-based data.",
-      "Worked on backend data handling, device connectivity, and API integration.",
-      "Collaborated with a small team to improve workflow and project efficiency.",
-      "Gained hands-on experience with real-world application development and debugging.",
-    ],
-  },
-  {
     title: "Open Source Contributor",
-    company_name: "GitHub",
-    icon: starbucks,
+    company_name: "GitHub Community",
+    icon: github,
     iconBg: "#383E56",
     date: "Ongoing",
     points: [
-      "Contributed to open-source projects by resolving issues and implementing new features.",
-      "Enhanced documentation and improved project maintainability.",
-      "Collaborated with other developers using Git and GitHub version control.",
-      "Learned best practices for teamwork and scalable code contributions.",
+      "Contributed to beginner-friendly open-source repositories by improving documentation, fixing minor bugs, and enhancing UI elements.",
+      "Participated in discussions, issue tracking, and collaborative problem-solving within GitHub communities.",
+      "Created and maintained small open-source utilities and component libraries to help other developers.",
+      "Gained practical experience with Git workflows, pull requests, code reviews, and distributed version control.",
     ],
   },
 ];
+
 
 const testimonials = [
   {
@@ -205,24 +195,28 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "ROOMIFY : Hotel-Booking-Platform",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Roomify is a full-stack hotel booking platform built with the MERN stack, featuring secure user authentication with Clerk and seamless online payments powered by Stripe. Users can browse hotels, check availability, make bookings, and manage reservations through an intuitive and responsive interface.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "express",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "mongodb",
         color: "pink-text-gradient",
       },
+      {
+        name: "Render",
+        color: "blue-text-gradient",
+      },
     ],
-    image: carrent,
+    image: Hotel,
     source_code_link: "https://github.com/",
     
   },
