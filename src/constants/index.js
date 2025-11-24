@@ -26,6 +26,8 @@ import {
   threejs,
   logo,
   github,
+  bootstrap,
+  express,
   
  
 } from "../assets";
@@ -98,8 +100,16 @@ const technologies = [
     icon: tailwind,
   },
   {
+    name: "BootStrap",
+    icon: bootstrap,
+  },
+  {
     name: "Node JS",
     icon: nodejs,
+  },
+    {
+    name: "Express",
+    icon: express,
   },
   {
     name: "MongoDB",
@@ -117,10 +127,7 @@ const technologies = [
   //   name: "figma",
   //   icon: figma,
   // },
-  {
-    name: "docker",
-    icon: docker,
-  },
+
 ];
 
 const experiences = [
