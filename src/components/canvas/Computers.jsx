@@ -2,29 +2,30 @@ import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
+import { WEBGL } from "../../utils/webgl";  // ✅ IMPORT WEBGL CHECK
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
 
   return (
     <mesh>
-      {/* Your improved lights but balanced correctly */}
+      {/* Lights */}
       <hemisphereLight intensity={0.25} groundColor="black" />
       <spotLight
         position={[-20, 50, 10]}
         angle={0.12}
         penumbra={1}
-        intensity={1.3}
-        castShadow
+        intensity={isMobile ? 1 : 1.3}   // slightly lighter for mobile
+        castShadow={!isMobile}          // ❗ SHADOWS OFF FOR MOBILE
         shadow-mapSize={1024}
       />
       <pointLight intensity={1.2} />
 
-      {/* FIXED SCALE + POSITION */}
+      {/* 3D Model */}
       <primitive
         object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}          // sir’s correct scaling
-        position={isMobile ? [0, -3.4, -2.3] : [0, -3.25, -1.8]} 
+        scale={isMobile ? 0.7 : 0.75}
+        position={isMobile ? [0, -3.4, -2.3] : [0, -3.25, -1.8]}
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -34,20 +35,26 @@ const Computers = ({ isMobile }) => {
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
 
+  // Detect mobile
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-    setIsMobile(mediaQuery.matches);
+    const mq = window.matchMedia("(max-width: 500px)");
+    setIsMobile(mq.matches);
 
     const handler = (e) => setIsMobile(e.matches);
-    mediaQuery.addEventListener("change", handler);
+    mq.addEventListener("change", handler);
 
-    return () => mediaQuery.removeEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // Safari / iPhone fix
+  // Safari / iPhone re-render fix
   useEffect(() => {
     setTimeout(() => window.dispatchEvent(new Event("resize")), 250);
   }, []);
+
+  // ❗ SAFETY: If WebGL is not available → don't render the Canvas
+  if (!WEBGL.isWebGLAvailable()) {
+    return null;
+  }
 
   return (
     <div className="relative w-full h-full">
@@ -57,11 +64,11 @@ const ComputersCanvas = () => {
           touchAction: "none",
           pointerEvents: "auto",
         }}
-        shadows
         frameloop="demand"
-        dpr={[1, 2]}
+        shadows={!isMobile}
+        dpr={[1, isMobile ? 1.2 : 2]}   // ❗ MOBILE-friendly DPR
         camera={{ position: [20, 3, 5], fov: 25 }}
-        gl={{ preserveDrawingBuffer: true }}
+        gl={{ antialias: !isMobile }}    // ❗ Turn off AA on mobile
       >
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
@@ -76,7 +83,7 @@ const ComputersCanvas = () => {
         <Preload all />
       </Canvas>
 
-      {/* YOUR EXTRA UI TEXT */}
+      {/* Your UI text */}
       <div
         className="
           absolute bottom-2 left-1/2 -translate-x-1/2

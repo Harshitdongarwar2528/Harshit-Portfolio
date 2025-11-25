@@ -3,13 +3,15 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
 
+import { WEBGL } from "../../utils/webgl";  // ⭐ ADD THIS
+
 const Stars = ({ starCount }) => {
   const ref = useRef();
   const [sphere] = useState(() =>
     random.inSphere(new Float32Array(starCount), { radius: 1.2 })
   );
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     ref.current.rotation.x -= delta / 10;
     ref.current.rotation.y -= delta / 15;
   });
@@ -30,14 +32,33 @@ const Stars = ({ starCount }) => {
 };
 
 const StarsCanvas = () => {
-  const [starCount, setStarCount] = useState(5000); // default PC value
+  const [starCount, setStarCount] = useState(5000);
 
+  const [webglSupported, setWebglSupported] = useState(true);
+
+  // ⭐ WebGL safe test (prevents blank screen on mobile)
+  useEffect(() => {
+    try {
+      const canvas = document.createElement("canvas");
+      const gl =
+        canvas.getContext("webgl") ||
+        canvas.getContext("experimental-webgl");
+
+      setWebglSupported(!!gl);
+    } catch {
+      setWebglSupported(false);
+    }
+  }, []);
+
+  // ❗ If WebGL unavailable → hide stars (avoid crashes)
+  if (!webglSupported) return null;
+
+  // ⭐ Dynamic star count for mobile
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 600px)");
 
-    // Set star count based on device
     const updateCount = (e) => {
-      setStarCount(e.matches ? 1500 : 5000); // mobile = 1500, PC = 5000
+      setStarCount(e.matches ? 800 : 5000);
     };
 
     updateCount(mediaQuery);
@@ -47,11 +68,11 @@ const StarsCanvas = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full z-[-1]">
+    <div className="absolute inset-0 w-full h-full z-[-1] pointer-events-none">
       <Canvas
         camera={{ position: [0, 0, 1] }}
-        dpr={[1, 1.5]} // optimized for mobile
-        gl={{ antialias: false }} // smoother on low-end phones
+        dpr={[1, 1.5]}
+        gl={{ antialias: false }}
       >
         <Suspense fallback={null}>
           <Stars starCount={starCount} />
