@@ -8,20 +8,23 @@ const Computers = ({ isMobile }) => {
 
   return (
     <mesh>
-      <hemisphereLight intensity={0.3} groundColor="black" />
+      {/* Your improved lights but balanced correctly */}
+      <hemisphereLight intensity={0.25} groundColor="black" />
       <spotLight
         position={[-20, 50, 10]}
         angle={0.12}
         penumbra={1}
-        intensity={1.5}
+        intensity={1.3}
         castShadow
         shadow-mapSize={1024}
       />
-      <pointLight intensity={1.5} />
+      <pointLight intensity={1.2} />
+
+      {/* FIXED SCALE + POSITION */}
       <primitive
         object={computer.scene}
-        scale={isMobile ? 1.5 : 1.5}
-        position={isMobile ? [0, -3.8, -2.2] : [0, -3.25, -2.6]}
+        scale={isMobile ? 0.7 : 0.75}          // sir’s correct scaling
+        position={isMobile ? [0, -3.4, -2.3] : [0, -3.25, -1.8]} 
         rotation={[-0.01, -0.2, -0.1]}
       />
     </mesh>
@@ -35,35 +38,30 @@ const ComputersCanvas = () => {
     const mediaQuery = window.matchMedia("(max-width: 500px)");
     setIsMobile(mediaQuery.matches);
 
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
+    const handler = (e) => setIsMobile(e.matches);
+    mediaQuery.addEventListener("change", handler);
 
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-    return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    return () => mediaQuery.removeEventListener("change", handler);
   }, []);
 
-  // Force Safari/iPhone layout update
+  // Safari / iPhone fix
   useEffect(() => {
-    setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 300);
+    setTimeout(() => window.dispatchEvent(new Event("resize")), 250);
   }, []);
 
   return (
     <div className="relative w-full h-full">
 
-      {/* Canvas */}
       <Canvas
         style={{
-            touchAction: "none",
-  pointerEvents: "auto", // prevents scroll hijack
+          touchAction: "none",
+          pointerEvents: "auto",
         }}
-        camera={{ position: [20, 3, 5], fov: 25 }}
         shadows
-        dpr={[1, 2]}
-        gl={{ preserveDrawingBuffer: true }}
         frameloop="demand"
+        dpr={[1, 2]}
+        camera={{ position: [20, 3, 5], fov: 25 }}
+        gl={{ preserveDrawingBuffer: true }}
       >
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
@@ -74,10 +72,11 @@ const ComputersCanvas = () => {
           />
           <Computers isMobile={isMobile} />
         </Suspense>
+
         <Preload all />
       </Canvas>
 
-      {/* INTERACTION TEXT (responsive + animated) */}
+      {/* YOUR EXTRA UI TEXT */}
       <div
         className="
           absolute bottom-2 left-1/2 -translate-x-1/2
@@ -91,7 +90,7 @@ const ComputersCanvas = () => {
         </div>
         <p
           className="
-            text-white text-[11px] 
+            text-white text-[11px]
             sm:text-[13px] md:text-[14px] lg:text-[15px]
             tracking-wide text-center px-3
           "
