@@ -109,7 +109,7 @@ const technologies = [
   },
     {
     name: "Express",
-    icon: express,
+    icon: Express,
   },
   {
     name: "MongoDB",
