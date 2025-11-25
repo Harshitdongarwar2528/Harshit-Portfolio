@@ -37,8 +37,8 @@ const Navbar = () => {
         >
           <img src={logo} alt="logo" className="w-11 h-11 object-contain" />
           <p className="text-white text-[15px] font-bold cursor-pointer flex">
-            Harshit Dongarwar&nbsp;
-            <span className="sm:block hidden">| Full Stack Developer</span>
+            Harshit Dongarwar{" "}
+            <span className="sm:block hidden">&nbsp;| Full Stack Developer</span>
           </p>
         </Link>
 
@@ -58,7 +58,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* SOCIALS */}
+          {/* SOCIAL ICONS */}
           <div className="flex items-center gap-4 ml-4 text-white text-[22px]">
             <a
               href="https://github.com/Harshitdongarwar2528"
