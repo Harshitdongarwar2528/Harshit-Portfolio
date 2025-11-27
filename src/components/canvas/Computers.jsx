@@ -68,7 +68,7 @@ const ComputersCanvas = () => {
         shadows={!isMobile}
         dpr={[1, isMobile ? 1.2 : 2]}   // ❗ MOBILE-friendly DPR
         camera={{ position: [20, 3, 5], fov: 25 }}
-        gl={{ antialias: !isMobile }}    // ❗ Turn off AA on mobile
+        gl={{ antialias: !isMobile, alpha: true }}    // ❗ Turn off AA on mobile
       >
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls

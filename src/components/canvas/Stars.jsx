@@ -68,7 +68,7 @@ const StarsCanvas = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full z-[-1] pointer-events-none">
+    <div className="absolute inset-0 w-full h-[100svh] z-[-1] pointer-events-none">
       <Canvas
         camera={{ position: [0, 0, 1] }}
         dpr={[1, 1.5]}

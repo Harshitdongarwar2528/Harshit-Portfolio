@@ -24,7 +24,8 @@ const App = () => {
 
         {/* ⭐ STARS START HERE (BEHIND ABOUT → CONTACT) */}
         <div className="relative z-0">
-          <StarsCanvas />
+          {typeof window !== "undefined" && window.innerWidth > 768 && <StarsCanvas />}
+
 
           <div className="relative z-10">
             <About />
