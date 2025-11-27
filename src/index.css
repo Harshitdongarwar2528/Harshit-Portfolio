@@ -112,3 +112,6 @@ canvas {
   -webkit-user-drag: none !important;
   -webkit-font-smoothing: antialiased;
 }
+body {
+  background-color: #050816; /* your primary color */
+}

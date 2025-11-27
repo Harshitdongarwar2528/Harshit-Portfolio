@@ -16,25 +16,24 @@ const App = () => {
     <BrowserRouter>
       <div className="relative z-0 bg-primary">
 
-        {/* HERO SECTION (NO STARS) */}
-        <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+        {/* 🌌 Stars for all sections EXCEPT Hero */}
+        <div className="fixed inset-0 z-0 pointer-events-none hidden md:block">
+          <StarsCanvas />
+        </div>
+
+        {/* HERO (no stars here) */}
+        <div className="relative z-10 bg-hero-pattern bg-cover bg-no-repeat bg-center">
           <Navbar />
           <Hero />
         </div>
 
-        {/* ⭐ STARS START HERE (BEHIND ABOUT → CONTACT) */}
-        <div className="relative z-0">
-          {typeof window !== "undefined" && window.innerWidth > 768 && <StarsCanvas />}
-
-
-          <div className="relative z-10">
-            <About />
-            <Experience />
-            <Tech />
-            <Works />
-            {/* <Feedbacks /> */}
-            <Contact />
-          </div>
+        {/* OTHER SECTIONS (stars visible behind these) */}
+        <div className="relative z-10">
+          <About />
+          <Experience />
+          <Tech />
+          <Works />
+          <Contact />
         </div>
 
       </div>
