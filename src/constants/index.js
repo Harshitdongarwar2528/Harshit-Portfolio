@@ -22,6 +22,7 @@ import {
   carrent,
   Hotel,
   jobit,
+  comingsoon,
   tripguide,
   threejs,
   logo,
@@ -203,7 +204,7 @@ const testimonials = [
 
 const projects = [
   {
-    name: "ROOMIFY : Hotel-Booking-Platform",
+    name: "ROOMIFY : Hotel Booking Platform",
     description:
       "Roomify is a full-stack hotel booking platform built with the MERN stack, featuring secure user authentication with Clerk and seamless online payments powered by Stripe. Users can browse hotels, check availability, make bookings, and manage reservations through an intuitive and responsive interface.",
     tags: [
@@ -229,9 +230,9 @@ const projects = [
     
   },
   {
-    name: "Job IT",
+    name: "CraveCart : Food delivery website",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "CraveCart is a MERN-stack food delivery platform, featuring dedicated dashboards for Owners, Customers, and Delivery Partners. It focuses on a smooth React UI, a robust Node.js/Express backend, and secure MongoDB data handling, and will soon be added to my portfolio.",
     tags: [
       {
         name: "react",
@@ -246,13 +247,13 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: jobit,
+    image: comingsoon,
     source_code_link: "https://github.com/",
   },
   {
-    name: "Trip Guide",
+    name: "Assistly - Speak, Ask, and Automate.",
     description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "Assistly is an intelligent virtual assistant capable of understanding natural language commands, allowing users to play songs, open YouTube, check weather, and automate everyday tasks. This NLP-powered bot is currently under development and will soon be added to my portfolio.",
     tags: [
       {
         name: "nextjs",
@@ -267,7 +268,7 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: tripguide,
+    image: comingsoon,
     source_code_link: "https://github.com/",
   },
 ];

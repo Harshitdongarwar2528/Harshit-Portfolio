@@ -28,7 +28,7 @@ const App = () => {
         </div>
 
         {/* OTHER SECTIONS (stars visible behind these) */}
-        <div className="relative z-10">
+        <div className="relative z-[1]">
           <About />
           <Experience />
           <Tech />

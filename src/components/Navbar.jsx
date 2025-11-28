@@ -19,11 +19,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-[9999] ${
-        scrolled ? "bg-primary" : "bg-transparent"
-      }`}
-    >
+<nav
+  className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 left-0 right-0 z-[99999] pointer-events-auto
+  ${scrolled ? "bg-[#0d0d0d]/90 backdrop-blur-md shadow-lg" : "bg-transparent"} transition-all duration-300`}
+>
+
+
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
 
         {/* LOGO */}

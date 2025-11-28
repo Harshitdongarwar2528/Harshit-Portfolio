@@ -31,6 +31,7 @@ import tesla from "./company/tesla.png";
 import carrent from "./carrent.png";
 import Hotel from "./Hotel.png";
 import jobit from "./jobit.png";
+import comingsoon from "./comingsoon.webp"
 import tripguide from "./tripguide.png";
 
 export {
@@ -64,5 +65,6 @@ export {
   carrent,
   Hotel,
   jobit,
+  comingsoon,
   tripguide,
 };
