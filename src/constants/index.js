@@ -226,7 +226,8 @@ const projects = [
       },
     ],
     image: Hotel,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/Harshitdongarwar2528/MernHotelProject",
+     live_demo_link:"https://roomify-roan-eight.vercel.app"
     
   },
   {
