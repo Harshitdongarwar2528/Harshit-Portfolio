@@ -54,19 +54,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "React.js Developer",
+    title: "Frontend Development",
     icon: web, // you can keep the original icon or replace based on your design
   },
   {
-    title: "Node.js & Express.js Developer",
+    title: "Backend Development",
     icon: mobile,
   },
   {
-    title: "MongoDB & Database Management",
+    title: "Database & Authentication",
     icon: backend,
   },
   {
-    title: "Stripe & Clerk Integration",
+    title: "Payments & Integrations",
     icon: creator,
   },
 ];
@@ -134,17 +134,18 @@ const technologies = [
 
 const experiences = [
   {
-    title: "Freelance MERN Stack Developer",
-    company_name: "Self Employed",
+    title: "Full Stack Developer (Personal & Client Projects)",
+    company_name: "Self-Directed",
     icon: logo,
     iconBg: "#E6DEDD",
     date: "June 2024 - Present",
-    points: [
-      "Developing and deploying full stack web applications using MongoDB, Express.js, React.js, and Node.js.",
-      "Creating responsive, user-friendly interfaces and integrating payment gateways using Stripe.",
-      "Collaborating with clients to understand requirements and deliver tailored web solutions.",
-      "Ensuring code quality, performance, and scalability across all projects.",
-    ],
+   points: [
+  "Built and deployed full-stack web applications using MongoDB, Express.js, React.js, and Node.js.",
+  "Implemented authentication, REST APIs, and database schemas for real-world use cases.",
+  "Integrated third-party services such as Stripe for payments and Clerk for authentication.",
+  "Focused on writing clean, maintainable code and improving performance and scalability.",
+],
+
   },
   {
     title: "Web Application Developer",
@@ -152,12 +153,12 @@ const experiences = [
     icon: logo,
     iconBg: "#383E56",
     date: "Jan 2024 - May 2024",
-    points: [
-      "Built dynamic and scalable web applications with React.js and RESTful APIs.",
-      "Implemented authentication and authorization using Clerk and JWT.",
-      "Optimized application performance and responsiveness across multiple devices.",
-      "Integrated third-party APIs and enhanced UI/UX through modern design techniques.",
-    ],
+points: [
+  "Developed multiple web applications using React.js and RESTful APIs.",
+  "Implemented authentication and authorization using JWT and Clerk.",
+  "Optimized frontend performance and ensured responsiveness across devices.",
+  "Worked on API integration and improved overall UI/UX consistency.",
+],
   },
   {
     title: "Open Source Contributor",
@@ -165,12 +166,11 @@ const experiences = [
     icon: github,
     iconBg: "#383E56",
     date: "Ongoing",
-    points: [
-      "Contributed to beginner-friendly open-source repositories by improving documentation, fixing minor bugs, and enhancing UI elements.",
-      "Participated in discussions, issue tracking, and collaborative problem-solving within GitHub communities.",
-      "Created and maintained small open-source utilities and component libraries to help other developers.",
-      "Gained practical experience with Git workflows, pull requests, code reviews, and distributed version control.",
-    ],
+points: [
+  "Contributed to beginner-friendly open-source repositories through documentation improvements and minor bug fixes.",
+  "Participated in issue discussions and pull requests to understand collaborative development workflows.",
+  "Gained hands-on experience with Git, GitHub, and version control best practices.",
+],
   },
 ];
 
@@ -204,74 +204,87 @@ const testimonials = [
 
 const projects = [
   {
-    name: "ROOMIFY : Hotel Booking Platform",
+    name: "ROOMIFY – Hotel Booking Platform",
     description:
-      "Roomify is a full-stack hotel booking platform built with the MERN stack, featuring secure user authentication with Clerk and seamless online payments powered by Stripe. Users can browse hotels, check availability, make bookings, and manage reservations through an intuitive and responsive interface.",
+      "ROOMIFY is a full-stack hotel booking platform similar to Airbnb, where users can search, filter, and sort hotel listings, view detailed property information, and make secure bookings. The platform includes user authentication using Clerk, Stripe-powered payment processing, a dedicated earnings section for hosts, and Cloudinary integration for image storage and management. The application focuses on clean API design, scalable data handling, and a responsive user experience.",
     tags: [
       {
         name: "react",
-        color: "blue-text-gradient",
+        color: "text-blue-400",
+      },
+      {
+        name: "node",
+        color: "text-green-400",
       },
       {
         name: "express",
-        color: "green-text-gradient",
+        color: "text-green-500",
       },
       {
         name: "mongodb",
-        color: "pink-text-gradient",
+        color: "text-emerald-400",
       },
       {
-        name: "Render",
-        color: "blue-text-gradient",
+        name: "stripe",
+        color: "text-purple-400",
+      },
+      {
+        name: "clerk",
+        color: "text-pink-400",
+      },
+      {
+        name: "cloudinary",
+        color: "text-sky-400",
       },
     ],
     image: Hotel,
     source_code_link: "https://github.com/Harshitdongarwar2528/MernHotelProject",
-     live_demo_link:"https://roomify-roan-eight.vercel.app"
-    
+    live_demo_link: "https://roomify-roan-eight.vercel.app",
   },
-  {
-    name: "CraveCart : Food delivery website",
-    description:
-      "CraveCart is a MERN-stack food delivery platform, featuring dedicated dashboards for Owners, Customers, and Delivery Partners. It focuses on a smooth React UI, a robust Node.js/Express backend, and secure MongoDB data handling, and will soon be added to my portfolio.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "restapi",
-        color: "green-text-gradient",
-      },
-      {
-        name: "scss",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: comingsoon,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "Assistly - Speak, Ask, and Automate.",
-    description:
-      "Assistly is an intelligent virtual assistant capable of understanding natural language commands, allowing users to play songs, open YouTube, check weather, and automate everyday tasks. This NLP-powered bot is currently under development and will soon be added to my portfolio.",
-    tags: [
-      {
-        name: "nextjs",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "supabase",
-        color: "green-text-gradient",
-      },
-      {
-        name: "css",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: comingsoon,
-    source_code_link: "https://github.com/",
-  },
+
+
+  // {
+  //   name: "CraveCart : Food delivery website",
+  //   description:
+  //     "CraveCart is a MERN-stack food delivery platform, featuring dedicated dashboards for Owners, Customers, and Delivery Partners. It focuses on a smooth React UI, a robust Node.js/Express backend, and secure MongoDB data handling, and will soon be added to my portfolio.",
+  //   tags: [
+  //     {
+  //       name: "react",
+  //       color: "blue-text-gradient",
+  //     },
+  //     {
+  //       name: "restapi",
+  //       color: "green-text-gradient",
+  //     },
+  //     {
+  //       name: "scss",
+  //       color: "pink-text-gradient",
+  //     },
+  //   ],
+  //   image: comingsoon,
+  //   source_code_link: "https://github.com/",
+  // },
+  // {
+  //   name: "Assistly - Speak, Ask, and Automate.",
+  //   description:
+  //     "Assistly is an intelligent virtual assistant capable of understanding natural language commands, allowing users to play songs, open YouTube, check weather, and automate everyday tasks. This NLP-powered bot is currently under development and will soon be added to my portfolio.",
+  //   tags: [
+  //     {
+  //       name: "nextjs",
+  //       color: "blue-text-gradient",
+  //     },
+  //     {
+  //       name: "supabase",
+  //       color: "green-text-gradient",
+  //     },
+  //     {
+  //       name: "css",
+  //       color: "pink-text-gradient",
+  //     },
+  //   ],
+  //   image: comingsoon,
+  //   source_code_link: "https://github.com/",
+  // },
 ];
 
 export { services, technologies, experiences, testimonials, projects };

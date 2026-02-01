@@ -38,8 +38,9 @@ const Navbar = () => {
         >
           <img src={logo} alt="logo" className="w-11 h-11 object-contain" />
           <p className="text-white text-[15px] font-bold cursor-pointer flex">
-            Harshit Dongarwar{" "}
-            <span className="sm:block hidden">&nbsp;| Full Stack Developer</span>
+           
+            <span className="sm:block hidden">&nbsp; Full Stack Developer (MERN)
+</span>
           </p>
         </Link>
 

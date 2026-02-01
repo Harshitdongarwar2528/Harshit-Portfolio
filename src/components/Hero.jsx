@@ -1,39 +1,29 @@
 import { motion } from "framer-motion";
-import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
+import bg from "../assets/herobg.png"; // adjust path
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-screen mx-auto">
+    <section className="relative w-full h-screen mx-auto overflow-hidden">
 
-      {/* HERO TEXT */}
-      <div
-        className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
-      >
-        <div className="flex flex-col justify-center items-center mt-5">
-          <div className="w-5 h-5 rounded-full bg-[#915EFF]" />
-          <div className="w-1 sm:h-80 h-40 violet-gradient" />
-        </div>
-
-        <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#915EFF]">Harshit</span>
-          </h1>
-
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop Responsive Websites, user <br className="sm:block hidden" />
-            interfaces and web applications
-          </p>
-        </div>
+      {/* BACKGROUND IMAGE */}
+      <div className="absolute inset-0">
+        <img
+          src={bg}
+          alt=""
+          className="w-full h-full object-cover opacity-10"
+        />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      {/* 3D COMPUTER */}
-      <ComputersCanvas />
+      {/* HERO CONTENT (EMPTY / MINIMAL ON PURPOSE) */}
+      <div className="relative z-10 w-full h-full flex items-center justify-center">
+        {/* Hero text already handled in Introduction section */}
+      </div>
 
       {/* SCROLL INDICATOR */}
-      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
+      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center z-10">
         <a href="#about">
-          <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
+          <div className="w-[35px] h-[64px] rounded-3xl border-2 border-white/30 flex justify-center items-start p-2">
             <motion.div
               animate={{ y: [0, 24, 0] }}
               transition={{
@@ -41,7 +31,7 @@ const Hero = () => {
                 repeat: Infinity,
                 repeatType: "loop",
               }}
-              className="w-3 h-3 rounded-full bg-secondary mb-1"
+              className="w-3 h-3 rounded-full bg-white/60 mb-1"
             />
           </div>
         </a>
