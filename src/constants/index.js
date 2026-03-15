@@ -28,6 +28,7 @@ import {
   logo,
   github,
   bootstrap,
+  Fooddel,
   
   
  
@@ -240,27 +241,43 @@ const projects = [
   },
 
 
-  // {
-  //   name: "CraveCart : Food delivery website",
-  //   description:
-  //     "CraveCart is a MERN-stack food delivery platform, featuring dedicated dashboards for Owners, Customers, and Delivery Partners. It focuses on a smooth React UI, a robust Node.js/Express backend, and secure MongoDB data handling, and will soon be added to my portfolio.",
-  //   tags: [
-  //     {
-  //       name: "react",
-  //       color: "blue-text-gradient",
-  //     },
-  //     {
-  //       name: "restapi",
-  //       color: "green-text-gradient",
-  //     },
-  //     {
-  //       name: "scss",
-  //       color: "pink-text-gradient",
-  //     },
-  //   ],
-  //   image: comingsoon,
-  //   source_code_link: "https://github.com/",
-  // },
+  {
+    name: "CraveCart : Food delivery website",
+    description:
+    "CraveCart is a MERN-stack food delivery platform with dedicated dashboards for Owners, Customers, and Delivery Partners. The platform allows customers to order food and track deliveries in real time, while owners manage menu items and orders, and delivery partners handle deliveries. It features a responsive React-based user interface, a robust Node.js and Express backend, and secure MongoDB data management.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "socket.io",
+        color: "green-text-gradient",
+      },
+      {
+        name: "jwt",
+        color: "pink-text-gradient",
+      },
+       {
+        name: "express",
+        color: "text-green-500",
+      },
+      {
+        name: "mongodb",
+        color: "text-emerald-400",
+      },
+      {
+        name: "google",
+        color: "text-purple-400",
+      },
+      {
+        name: "cloudinary",
+        color: "text-sky-400",
+      },
+    ],
+    image: Fooddel,
+    source_code_link: "https://github.com/Harshitdongarwar2528/CRAVECART",
+  },
   // {
   //   name: "Assistly - Speak, Ask, and Automate.",
   //   description:

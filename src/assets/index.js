@@ -33,6 +33,7 @@ import Hotel from "./Hotel.png";
 import jobit from "./jobit.png";
 import comingsoon from "./comingsoon.webp"
 import tripguide from "./tripguide.png";
+import Fooddel from "./Fooddel.webp"
 
 export {
   logo,
@@ -67,4 +68,5 @@ export {
   jobit,
   comingsoon,
   tripguide,
+  Fooddel,
 };
