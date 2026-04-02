@@ -29,6 +29,7 @@ import {
   github,
   bootstrap,
   Fooddel,
+  OscillionLogo,
   
   
  
@@ -159,15 +160,16 @@ points: [
 ],
   },
   {
-    title: "Open Source Contributor",
-    company_name: "GitHub Community",
-    icon: github,
-    iconBg: "#383E56",
-    date: "Ongoing",
+    title: "Software Development Intern",
+    company_name: "Oscillion Software Solutions LLP",
+    icon: OscillionLogo,
+    iconBg: "#1F1955",
+    date: "April 2026 - Present",
 points: [
-  "Contributed to beginner-friendly open-source repositories through documentation improvements and minor bug fixes.",
-  "Participated in issue discussions and pull requests to understand collaborative development workflows.",
-  "Gained hands-on experience with Git, GitHub, and version control best practices.",
+ "Collaborating with the development team to build and maintain software applications.",
+      "Writing clean, efficient, and maintainable code under mentorship.",
+      "Participating in code reviews, sprint planning, and daily stand-ups.",
+      "Gaining hands-on experience with industry best practices and development workflows.",
 ],
   },
 ];
