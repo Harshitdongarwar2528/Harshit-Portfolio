@@ -133,6 +133,24 @@ const technologies = [
 
 const experiences = [
   {
+    title: "Software Development Intern",
+    company_name: "Oscillion Software Solutions LLP",
+    icon: OscillionLogo,
+    iconBg: "#1F1955",
+    date: "April 2026 - Present",
+points: [
+ "Collaborating with the development team to build and maintain software applications.",
+      "Writing clean, efficient, and maintainable code under mentorship.",
+      "Participating in code reviews, sprint planning, and daily stand-ups.",
+      "Gaining hands-on experience with industry best practices and development workflows.",
+
+
+
+   
+],
+
+  },
+  {
     title: "Full Stack Developer (Personal & Client Projects)",
     company_name: "Self-Directed",
     icon: logo,
@@ -144,10 +162,9 @@ const experiences = [
   "Integrated third-party services such as Stripe for payments and Clerk for authentication.",
   "Focused on writing clean, maintainable code and improving performance and scalability.",
 ],
-
   },
   {
-    title: "Web Application Developer",
+     title: "Web Application Developer",
     company_name: "Independent Projects",
     icon: logo,
     iconBg: "#383E56",
@@ -157,19 +174,10 @@ points: [
   "Implemented authentication and authorization using JWT and Clerk.",
   "Optimized frontend performance and ensured responsiveness across devices.",
   "Worked on API integration and improved overall UI/UX consistency.",
-],
-  },
-  {
-    title: "Software Development Intern",
-    company_name: "Oscillion Software Solutions LLP",
-    icon: OscillionLogo,
-    iconBg: "#1F1955",
-    date: "April 2026 - Present",
-points: [
- "Collaborating with the development team to build and maintain software applications.",
-      "Writing clean, efficient, and maintainable code under mentorship.",
-      "Participating in code reviews, sprint planning, and daily stand-ups.",
-      "Gaining hands-on experience with industry best practices and development workflows.",
+
+
+
+    
 ],
   },
 ];
