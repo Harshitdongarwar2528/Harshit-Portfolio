@@ -33,7 +33,8 @@ import Hotel from "./Hotel.png";
 import jobit from "./jobit.png";
 import comingsoon from "./comingsoon.webp"
 import tripguide from "./tripguide.png";
-import Fooddel from "./Fooddel.webp"
+import Fooddel from "./Fooddel.webp";
+import OscillionLogo from "./OscillionLogo.jpg";
 
 export {
   logo,
@@ -69,4 +70,5 @@ export {
   comingsoon,
   tripguide,
   Fooddel,
+  OscillionLogo,
 };
