@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
 
@@ -11,20 +11,42 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // ✅ Ref to close mobile menu when clicking outside
+  const menuRef = useRef(null);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 100);
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // ✅ Close menu on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setToggle(false);
+      }
+    };
+    if (toggle) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [toggle]);
+
+  // ✅ Close menu on Escape key
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") setToggle(false);
+    };
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, []);
+
   return (
-<nav
-  className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 left-0 right-0 z-[99999] pointer-events-auto
-  ${scrolled ? "bg-[#0d0d0d]/90 backdrop-blur-md shadow-lg" : "bg-transparent"} transition-all duration-300`}
->
-
-
+    <nav
+      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 left-0 right-0 z-[99999] pointer-events-auto
+        ${scrolled ? "bg-[#0d0d0d]/90 backdrop-blur-md shadow-lg" : "bg-transparent"} transition-all duration-300`}
+    >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
 
         {/* LOGO */}
@@ -38,9 +60,7 @@ const Navbar = () => {
         >
           <img src={logo} alt="logo" className="w-11 h-11 object-contain" />
           <p className="text-white text-[15px] font-bold cursor-pointer flex">
-           
-            <span className="sm:block hidden">&nbsp; Full Stack Developer (MERN)
-</span>
+            <span className="sm:block hidden">&nbsp; Full Stack Developer (MERN)</span>
           </p>
         </Link>
 
@@ -52,7 +72,7 @@ const Navbar = () => {
                 key={nav.id}
                 className={`${
                   active === nav.title ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer`}
+                } hover:text-white text-[18px] font-medium cursor-pointer transition-colors duration-200`}
                 onClick={() => setActive(nav.title)}
               >
                 <a href={`#${nav.id}`}>{nav.title}</a>
@@ -66,7 +86,8 @@ const Navbar = () => {
               href="https://github.com/Harshitdongarwar2528"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-400 transition-colors"
+              aria-label="GitHub profile"
+              className="hover:text-gray-400 transition-colors duration-200"
             >
               <FaGithub />
             </a>
@@ -74,7 +95,8 @@ const Navbar = () => {
               href="https://linkedin.com/in/harshit-dongarwar"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-400 transition-colors"
+              aria-label="LinkedIn profile"
+              className="hover:text-gray-400 transition-colors duration-200"
             >
               <FaLinkedin />
             </a>
@@ -82,13 +104,15 @@ const Navbar = () => {
         </div>
 
         {/* MOBILE MENU */}
-        <div className="sm:hidden flex flex-1 justify-end items-center">
-          <div
+        <div className="sm:hidden flex flex-1 justify-end items-center" ref={menuRef}>
+          <button
             onClick={() => setToggle(!toggle)}
-            className="cursor-pointer text-white text-[26px] z-[99999]"
+            aria-label={toggle ? "Close menu" : "Open menu"}
+            aria-expanded={toggle}
+            className="cursor-pointer text-white text-[26px] z-[99999] bg-transparent border-none"
           >
             {toggle ? <FaTimes /> : <FaBars />}
-          </div>
+          </button>
 
           <div
             className={`${
@@ -117,6 +141,7 @@ const Navbar = () => {
                   href="https://github.com/Harshitdongarwar2528"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="GitHub profile"
                 >
                   <FaGithub />
                 </a>
@@ -124,6 +149,7 @@ const Navbar = () => {
                   href="https://linkedin.com/in/harshit-dongarwar"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn profile"
                 >
                   <FaLinkedin />
                 </a>
@@ -131,6 +157,7 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
+
       </div>
     </nav>
   );
