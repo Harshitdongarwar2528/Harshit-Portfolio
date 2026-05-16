@@ -7,7 +7,7 @@ import Experience from './Experience';
 import Works from './Works';
 import Feedbacks from './Feedbacks';
 import Contact from './Contact';
-
+import CanvasLoader from './Loader'; // ✅ Added missing Loader export
 
 export {
   Hero,
@@ -18,6 +18,6 @@ export {
   Works,
   Feedbacks,
   Contact,
-  EarthCanvas, 
- 
+  EarthCanvas,
+  CanvasLoader, // ✅ Now exported for use in canvas components
 }

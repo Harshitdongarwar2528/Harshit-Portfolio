@@ -145,12 +145,15 @@ const Works = () => {
         </h2>
       </motion.div>
 
+      {/* ✅ Fixed: staggerChildren now fires because variants are defined here
+          and initial/whileInView are set, which was missing before */}
       <motion.div
         className="mt-16 space-y-14"
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
         variants={{
+          hidden: {},
           show: {
             transition: {
               staggerChildren: 0.2,

@@ -20,8 +20,8 @@ const FeedbackCard = ({
       bg-black-200 p-10 rounded-3xl 
       w-full sm:w-[300px] lg:w-[340px]
       shadow-lg shadow-black/20
-      min-h-[380px]            /* ⭐ Equal height */
-      flex flex-col justify-between /* ⭐ Makes layout consistent */
+      min-h-[380px]
+      flex flex-col justify-between
     "
   >
     <div>
@@ -55,25 +55,36 @@ const Feedbacks = () => {
     <div className="mt-12 bg-black-100 rounded-[20px]">
       {/* Header Section */}
       <div className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}>
-        <motion.div variants={textVariant()}>
+        <motion.div
+          variants={textVariant()}
+          initial='hidden'
+          whileInView='show'
+          viewport={{ once: true, amount: 0.25 }}
+        >
           <p className={styles.sectionSubText}>What others say</p>
           <h2 className={styles.sectionHeadText}>Testimonials.</h2>
         </motion.div>
       </div>
 
-      {/* FIXED SPACING GRID */}
-      <div
+      {/* ✅ Added animation wrapper so cards animate in correctly */}
+      <motion.div
         className={`
           -mt-20 pb-14 ${styles.paddingX}
           grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
           gap-10
           place-items-center
         `}
+        initial='hidden'
+        whileInView='show'
+        viewport={{ once: true, amount: 0.1 }}
+        variants={{
+          show: { transition: { staggerChildren: 0.2 } },
+        }}
       >
         {testimonials.map((testimonial, index) => (
           <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
