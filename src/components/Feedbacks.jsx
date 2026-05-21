@@ -1,92 +1,92 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaStar } from "react-icons/fa";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { testimonials } from "../constants";
 
-const FeedbackCard = ({
-  index,
-  testimonial,
-  name,
-  designation,
-  company,
-  image,
-}) => (
+const FeedbackCard = ({ index, testimonial, name, designation, company, image }) => (
   <motion.div
-    variants={fadeIn("", "spring", index * 0.5, 0.75)}
-    className="
-      bg-black-200 p-10 rounded-3xl 
-      w-full sm:w-[300px] lg:w-[340px]
-      shadow-lg shadow-black/20
-      min-h-[380px]
-      flex flex-col justify-between
-    "
+    variants={fadeIn("up", "spring", index * 0.18, 0.75)}
+    className="relative flex flex-col justify-between p-7 rounded-2xl overflow-hidden"
+    style={{
+      background: "linear-gradient(145deg, #0d0f1e, #0f1228)",
+      border: "1px solid rgba(255,255,255,0.07)",
+      minHeight: "340px",
+    }}
   >
-    <div>
-      <p className="text-white font-black text-[48px]">"</p>
-      <p className="text-white tracking-wider text-[17px] leading-[24px] mt-2">
-        {testimonial}
-      </p>
+    {/* subtle top-left glow */}
+    <div
+      className="absolute -top-8 -left-8 w-32 h-32 rounded-full pointer-events-none"
+      style={{ background: "radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%)" }}
+    />
+
+    {/* star rating */}
+    <div className="flex gap-1 mb-4">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <FaStar key={i} className="text-amber-400 text-[13px]" />
+      ))}
     </div>
 
-    <div className="mt-7 flex justify-between items-center gap-3">
-      <div className="flex-1 flex flex-col">
-        <p className="text-white font-medium text-[16px]">
-          <span className="blue-text-gradient">@</span> {name}
-        </p>
-        <p className="mt-1 text-secondary text-[12px]">
-          {designation} of {company}
-        </p>
-      </div>
+    {/* quote mark */}
+    <p
+      className="absolute top-5 right-6 text-[72px] font-black leading-none select-none pointer-events-none"
+      style={{ color: "rgba(124,58,237,0.15)" }}
+    >
+      "
+    </p>
 
+    {/* testimonial text */}
+    <p className="text-gray-300 text-[15px] leading-[1.7] flex-1">
+      {testimonial}
+    </p>
+
+    {/* author row */}
+    <div className="mt-6 pt-5 border-t border-white/[0.06] flex items-center gap-3">
       <img
         src={image}
-        alt={`feedback_by-${name}`}
-        className="w-10 h-10 rounded-full object-cover"
+        alt={name}
+        className="w-11 h-11 rounded-full object-cover border border-purple-500/30"
       />
+      <div className="flex flex-col">
+        <p className="text-white font-semibold text-[14px]">{name}</p>
+        <p className="text-gray-500 text-[12px]">
+          {designation} · {company}
+        </p>
+      </div>
     </div>
   </motion.div>
 );
 
-const Feedbacks = () => {
-  return (
-    <div className="mt-12 bg-black-100 rounded-[20px]">
-      {/* Header Section */}
-      <div className={`bg-tertiary rounded-2xl ${styles.padding} min-h-[300px]`}>
-        <motion.div
-          variants={textVariant()}
-          initial='hidden'
-          whileInView='show'
-          viewport={{ once: true, amount: 0.25 }}
-        >
-          <p className={styles.sectionSubText}>What others say</p>
-          <h2 className={styles.sectionHeadText}>Testimonials.</h2>
-        </motion.div>
-      </div>
+const Feedbacks = () => (
+  <div>
+    {/* header */}
+    <motion.div
+      variants={textVariant()}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.25 }}
+      className="mb-12"
+    >
+      <p className={styles.sectionSubText}>What others say</p>
+      <h2 className={styles.sectionHeadText}>Testimonials.</h2>
+    </motion.div>
 
-      {/* ✅ Added animation wrapper so cards animate in correctly */}
-      <motion.div
-        className={`
-          -mt-20 pb-14 ${styles.paddingX}
-          grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3
-          gap-10
-          place-items-center
-        `}
-        initial='hidden'
-        whileInView='show'
-        viewport={{ once: true, amount: 0.1 }}
-        variants={{
-          show: { transition: { staggerChildren: 0.2 } },
-        }}
-      >
-        {testimonials.map((testimonial, index) => (
-          <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
-        ))}
-      </motion.div>
-    </div>
-  );
-};
+    {/* cards grid */}
+    <motion.div
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={{ show: { transition: { staggerChildren: 0.18 } } }}
+    >
+      {testimonials.map((testimonial, index) => (
+        <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
+      ))}
+    </motion.div>
+  </div>
+);
 
 export default SectionWrapper(Feedbacks, "");

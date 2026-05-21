@@ -6,30 +6,65 @@ import { styles } from "../styles";
 import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
-import profile from "../assets/profilee.png"; // 👈 your image
+import profile from "../assets/profilee.png";
 
+/* ── stat card ── */
+const Stat = ({ value, label }) => (
+  <div className="flex flex-col items-center gap-1">
+    <span className="text-white text-[28px] font-black leading-none">{value}</span>
+    <span className="text-gray-400 text-[12px] text-center leading-tight">{label}</span>
+  </div>
+);
+
+/* ── skill bar ── */
+const SkillBar = ({ name, pct, delay }) => (
+  <motion.div
+    initial={{ opacity: 0, x: -20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5, delay }}
+    viewport={{ once: true }}
+    className="flex flex-col gap-1.5"
+  >
+    <div className="flex justify-between text-[13px]">
+      <span className="text-gray-300 font-medium">{name}</span>
+      <span className="text-purple-400">{pct}%</span>
+    </div>
+    <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: `${pct}%` }}
+        transition={{ duration: 0.9, delay: delay + 0.15, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="h-full rounded-full"
+        style={{ background: "linear-gradient(90deg, #7c3aed, #4f46e5)" }}
+      />
+    </div>
+  </motion.div>
+);
+
+const SKILLS = [
+  { name: "React.js", pct: 88 },
+  { name: "Node.js / Express", pct: 82 },
+  { name: "MongoDB", pct: 78 },
+  { name: "REST API / JWT", pct: 85 },
+  { name: "HTML / CSS / Tailwind", pct: 90 },
+];
+
+/* ── service card ── */
 const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className='xs:w-[250px] w-full'>
+  <Tilt className="xs:w-[230px] w-full" tiltMaxAngleX={12} tiltMaxAngleY={12}>
     <motion.div
-      variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className='w-full p-[1px] rounded-[20px] border border-white/10'
+      variants={fadeIn("up", "spring", index * 0.15, 0.75)}
+      className="w-full p-[1px] rounded-[20px]"
+      style={{
+        background: "linear-gradient(135deg, rgba(124,58,237,0.4), rgba(79,70,229,0.15), rgba(255,255,255,0.05))",
+      }}
     >
-      <div
-        options={{
-          max: 20,
-          scale: 1,
-          speed: 450,
-        }}
-        className='bg-[#0b0f1a] rounded-[20px] py-6 px-8 min-h-[260px] flex justify-center items-center flex-col gap-4'
-      >
-        <img
-          src={icon}
-          alt='web-development'
-          className='w-14 h-14 object-contain opacity-70'
-        />
-        <h3 className='text-white text-[18px] font-bold text-center'>
-          {title}
-        </h3>
+      <div className="bg-[#080c1a] rounded-[20px] py-7 px-6 min-h-[240px] flex justify-center items-center flex-col gap-4 hover:bg-[#0d1228] transition-colors duration-300">
+        <div className="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+          <img src={icon} alt={title} className="w-9 h-9 object-contain" />
+        </div>
+        <h3 className="text-white text-[16px] font-bold text-center leading-snug">{title}</h3>
       </div>
     </motion.div>
   </Tilt>
@@ -38,114 +73,125 @@ const ServiceCard = ({ index, title, icon }) => (
 const About = () => {
   return (
     <>
-      {/* --- Intro Section --- */}
+      {/* ── section header ── */}
       <motion.div
         variants={textVariant()}
-        className='mb-10'
-        initial='hidden'
-        whileInView='show'
+        initial="hidden"
+        whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
+        className="mb-12"
       >
-        <div className="mt-20">
-          <h2 className={styles.sectionHeadText}>MERN Stack Developer</h2>
-          <p className="text-secondary text-[17px] max-w-3xl leading-[30px]">
-            I build full-stack web applications using React, Node.js, Express, and MongoDB
-            with authentication and REST APIs.
-          </p>
-        </div>
+        <p className={styles.sectionSubText}>Who I am</p>
+        <h2 className={styles.sectionHeadText}>About Me.</h2>
       </motion.div>
 
-      {/* --- About Content (Text Left + Image Right) --- */}
-      <div className='flex flex-col lg:flex-row items-center justify-between gap-10'>
-        {/* LEFT: Text */}
+      {/* ── main two-column layout ── */}
+      <div className="flex flex-col lg:flex-row gap-14 items-start">
+
+        {/* LEFT column */}
         <motion.div
-          variants={fadeIn("left", "spring", 0.2, 1)}
-          initial='hidden'
-          whileInView='show'
-          viewport={{ once: true, amount: 0.25 }}
-          className='flex-1'
+          variants={fadeIn("right", "spring", 0.1, 0.9)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="flex-1 flex flex-col gap-8"
         >
-          <p className='text-secondary text-[17px] max-w-3xl leading-[30px]'>
-            I'm <span className='text-white font-semibold'>Harshit Dongarwar</span>,
-            a MERN stack developer with hands-on experience building full-stack web applications.
-            I have worked on projects involving user authentication, REST API development,
-            database design, and frontend integration using React.
-            I am currently seeking an entry-level software developer role.
+          {/* bio */}
+          <p className="text-gray-400 text-[16px] leading-[1.85]">
+            I'm{" "}
+            <span className="text-white font-semibold">Harshit Dongarwar</span>, a
+            MERN stack developer with hands-on experience building full-stack web
+            applications. I've worked on projects involving user authentication, REST API
+            development, database design, and frontend integration using React.
+            <br /><br />
+            I'm passionate about writing clean, maintainable code and delivering
+            real-world solutions. Currently seeking an entry-level software developer role
+            where I can contribute and grow.
           </p>
 
-          {/* --- Personal Info --- */}
-          <div className='mt-6 text-secondary text-[16px] leading-[28px]'>
-            <p>
-              <span className='text-purple-400 font-semibold'>Email:</span>{" "}
-              <a
-                href="mailto:harshitdongarwar2003@gmail.com"
-                className="hover:text-white transition-colors duration-200"
-              >
-                harshitdongarwar2003@gmail.com
-              </a>
-            </p>
-            <p>
-              <span className='text-purple-400 font-semibold'>Phone:</span>{" "}
-              <a
-                href="tel:+917038798690"
-                className="hover:text-white transition-colors duration-200"
-              >
-                +91 7038798690
-              </a>
-            </p>
+          {/* contact row */}
+          <div className="flex flex-col gap-2 text-[15px]">
+            <a
+              href="mailto:harshitdongarwar2003@gmail.com"
+              className="flex items-center gap-2 text-gray-400 hover:text-purple-300 transition-colors duration-200 group"
+            >
+              <span className="text-purple-400 font-semibold group-hover:text-purple-300">✉</span>
+              harshitdongarwar2003@gmail.com
+            </a>
+            <a
+              href="tel:+917038798690"
+              className="flex items-center gap-2 text-gray-400 hover:text-purple-300 transition-colors duration-200 group"
+            >
+              <span className="text-purple-400 font-semibold group-hover:text-purple-300">📞</span>
+              +91 7038798690
+            </a>
           </div>
 
-          {/* --- Resume Button --- */}
+          {/* resume button */}
           <motion.a
-            href='/Harshit-Dongarwar-Resume.pdf' // 👈 place your resume in "public" folder
+            href="/Harshit-Dongarwar-Resume.pdf"
             download
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className='mt-6 inline-block px-6 py-3 bg-gradient-to-r from-[#5b21b6] to-[#7c3aed] text-white font-semibold rounded-lg shadow-md transition-all duration-300'
+            whileHover={{ scale: 1.05, boxShadow: "0 0 24px rgba(139,92,246,0.45)" }}
+            whileTap={{ scale: 0.96 }}
+            className="self-start mt-1 px-7 py-3 rounded-xl font-semibold text-white text-[15px] transition-all duration-300"
+            style={{ background: "linear-gradient(135deg, #7c3aed, #4f46e5)" }}
           >
-            Download Resume
+            Download Resume ↓
           </motion.a>
+
+          {/* stats row */}
+          <div className="flex gap-8 mt-2 flex-wrap">
+            {[
+              { value: "5+", label: "Projects built" },
+              { value: "2+", label: "Years learning" },
+              { value: "3", label: "Stacks mastered" },
+            ].map((s) => (
+              <Stat key={s.label} {...s} />
+            ))}
+          </div>
         </motion.div>
 
-        {/* --- RIGHT: Profile Image with Hover Effect --- */}
-        <motion.div
-          className='flex justify-center lg:justify-end flex-1'
-          initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 120,
-            damping: 10,
-            duration: 1,
-          }}
-          viewport={{ once: true }}
-        >
-          <motion.img
-            src={profile}
-            alt='Harshit Dongarwar'
-            className='w-64 h-64 lg:w-80 lg:h-80 rounded-full object-cover border-4 shadow-[0_0_25px_rgba(139,92,246,0.4)] cursor-pointer'
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0px 0px 30px rgba(255, 255, 255, 0.12)"
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 10,
-            }}
-          />
-        </motion.div>
+        {/* RIGHT column – photo + skill bars */}
+        <div className="flex-1 flex flex-col gap-10 items-center lg:items-start">
+
+          {/* profile image */}
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 110, damping: 12, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* glow ring */}
+            <div
+              className="absolute inset-0 rounded-full blur-xl opacity-40 scale-110"
+              style={{ background: "radial-gradient(circle, #7c3aed, transparent 70%)" }}
+            />
+            <motion.img
+              src={profile}
+              alt="Harshit Dongarwar"
+              className="relative w-56 h-56 lg:w-72 lg:h-72 rounded-full object-cover border-2 border-purple-500/40"
+              whileHover={{ scale: 1.06 }}
+              transition={{ type: "spring", stiffness: 200, damping: 12 }}
+            />
+          </motion.div>
+
+          {/* skill bars */}
+          <div className="w-full flex flex-col gap-4">
+            {SKILLS.map((s, i) => (
+              <SkillBar key={s.name} name={s.name} pct={s.pct} delay={i * 0.1} />
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* --- Service Cards --- */}
+      {/* ── service cards ── */}
       <motion.div
-        className='mt-20 flex flex-wrap justify-center gap-10'
-        initial='hidden'
-        whileInView='show'
+        className="mt-24 flex flex-wrap justify-center gap-7"
+        initial="hidden"
+        whileInView="show"
         viewport={{ once: true, amount: 0.1 }}
-        variants={{
-          show: { transition: { staggerChildren: 0.15 } },
-        }}
+        variants={{ show: { transition: { staggerChildren: 0.12 } } }}
       >
         {services.map((service, index) => (
           <ServiceCard key={service.title} index={index} {...service} />
