@@ -144,7 +144,7 @@ const About = () => {
             {[
               { value: "5+", label: "Projects built" },
               { value: "2+", label: "Years learning" },
-              { value: "3", label: "Stacks mastered" },
+              { value: "MERN", label: "Stack Expertise" },
             ].map((s) => (
               <Stat key={s.label} {...s} />
             ))}
@@ -152,7 +152,7 @@ const About = () => {
         </motion.div>
 
         {/* RIGHT column – photo + skill bars */}
-        <div className="flex-1 flex flex-col gap-10 items-center lg:items-start">
+        <div className="flex-1 flex flex-col gap-10 items-end lg:items-start">
 
           {/* profile image */}
           <motion.div

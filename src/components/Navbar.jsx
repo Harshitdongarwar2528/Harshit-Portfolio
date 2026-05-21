@@ -19,7 +19,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* close on outside click */
   useEffect(() => {
     const handler = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) setToggle(false);
@@ -28,7 +27,6 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, [toggle]);
 
-  /* close on Escape */
   useEffect(() => {
     const handler = (e) => { if (e.key === "Escape") setToggle(false); };
     document.addEventListener("keydown", handler);
@@ -45,63 +43,69 @@ const Navbar = () => {
         w-full flex items-center py-4 fixed top-0 left-0 right-0 z-[99999]
         transition-all duration-300
         ${scrolled
-          ? "bg-[#050816]/85 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
+          ? "bg-[#080808]/90 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.5)]"
           : "bg-transparent"
         }
       `}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
 
-        {/* ── logo ── */}
+        {/* ── logo + name ── */}
         <Link
           to="/"
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-3 shrink-0 group"
           onClick={() => { setActive(""); window.scrollTo(0, 0); }}
         >
           <img
             src={logo}
             alt="logo"
-            className="w-10 h-10 object-contain group-hover:scale-105 transition-transform duration-200"
+            className="w-9 h-9 object-contain group-hover:scale-105 transition-transform duration-200"
           />
-          <div className="hidden sm:flex flex-col leading-none">
-            <span className="text-white text-[15px] font-bold tracking-wide">
+          {/* name block — hidden on xs, shown sm+ */}
+          <div className="hidden sm:flex flex-col leading-none gap-[3px]">
+            <span className="text-white text-[14px] font-bold tracking-wide whitespace-nowrap">
               Harshit Dongarwar
             </span>
-            <span className="text-purple-400 text-[11px] font-medium tracking-widest uppercase">
+            <span className="text-gray-400 text-[10px] font-medium tracking-[0.18em] uppercase whitespace-nowrap">
               Full Stack · MERN
             </span>
           </div>
         </Link>
 
         {/* ── desktop menu ── */}
-        <div className="hidden sm:flex items-center gap-8">
-          <ul className="list-none flex flex-row gap-8">
+        <div className="hidden sm:flex items-center gap-6 ml-6">
+
+          {/* nav links */}
+          <ul className="list-none flex flex-row gap-6">
             {navLinks.map((nav) => (
               <li key={nav.id} className="relative group">
                 <a
                   href={`#${nav.id}`}
                   onClick={() => setActive(nav.title)}
                   className={`
-                    text-[15px] font-medium transition-colors duration-200
+                    text-[14px] font-medium transition-colors duration-200 whitespace-nowrap
                     ${active === nav.title ? "text-white" : "text-gray-400 hover:text-white"}
                   `}
                 >
                   {nav.title}
                 </a>
-                {/* animated underline */}
+                {/* underline — white, not purple, cleaner */}
                 <span
                   className={`
-                    absolute -bottom-1 left-0 h-[2px] rounded-full bg-gradient-to-r from-purple-500 to-indigo-500
+                    absolute -bottom-1 left-0 h-[1.5px] rounded-full bg-white
                     transition-all duration-300
-                    ${active === nav.title ? "w-full" : "w-0 group-hover:w-full"}
+                    ${active === nav.title ? "w-full opacity-70" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-40"}
                   `}
                 />
               </li>
             ))}
           </ul>
 
-          {/* social icons */}
-          <div className="flex items-center gap-3 ml-2">
+          {/* divider */}
+          <div className="w-px h-4 bg-white/10" />
+
+          {/* social icons — neutral, no purple */}
+          <div className="flex items-center gap-2">
             {[
               { href: "https://github.com/Harshitdongarwar2528", icon: <FaGithub />, label: "GitHub" },
               { href: "https://linkedin.com/in/harshit-dongarwar", icon: <FaLinkedin />, label: "LinkedIn" },
@@ -112,17 +116,17 @@ const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-9 h-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500/40 hover:bg-purple-500/10 transition-all duration-200 text-[18px]"
+                className="w-8 h-8 rounded-md border border-white/10 bg-transparent flex items-center justify-center text-gray-400 hover:text-white hover:border-white/25 hover:bg-white/5 transition-all duration-200 text-[17px]"
               >
                 {icon}
               </a>
             ))}
           </div>
 
-          {/* hire me pill */}
+          {/* hire me — white outline, no purple bg */}
           <a
             href="#contact"
-            className="px-4 py-1.5 rounded-full text-[13px] font-semibold text-white border border-purple-500/50 bg-purple-500/15 hover:bg-purple-500/30 transition-all duration-200"
+            className="px-4 py-1.5 rounded-full text-[13px] font-semibold text-white border border-white/25 hover:bg-white/10 hover:border-white/40 transition-all duration-200 whitespace-nowrap"
           >
             Hire Me
           </a>
@@ -134,7 +138,7 @@ const Navbar = () => {
             onClick={() => setToggle((t) => !t)}
             aria-label={toggle ? "Close menu" : "Open menu"}
             aria-expanded={toggle}
-            className="w-10 h-10 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-white text-[20px] z-[99999]"
+            className="w-9 h-9 rounded-md border border-white/10 bg-white/5 flex items-center justify-center text-white text-[18px]"
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
@@ -142,7 +146,7 @@ const Navbar = () => {
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
                 exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.18 }}
+                transition={{ duration: 0.15 }}
               >
                 {toggle ? <FaTimes /> : <FaBars />}
               </motion.span>
@@ -156,19 +160,19 @@ const Navbar = () => {
                 initial={{ opacity: 0, scale: 0.95, y: -8 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: -8 }}
-                transition={{ duration: 0.2 }}
-                className="absolute top-[72px] right-3 min-w-[200px] z-[9999] rounded-2xl border border-white/10 bg-[#0d0d1a]/95 backdrop-blur-xl p-5 shadow-[0_16px_48px_rgba(0,0,0,0.6)]"
+                transition={{ duration: 0.18 }}
+                className="absolute top-[68px] right-3 min-w-[190px] z-[9999] rounded-xl border border-white/[0.08] bg-[#0f0f0f]/95 backdrop-blur-xl p-4 shadow-[0_16px_48px_rgba(0,0,0,0.7)]"
               >
-                <ul className="flex flex-col gap-1">
+                <ul className="flex flex-col gap-0.5">
                   {navLinks.map((nav) => (
                     <li key={nav.id}>
                       <a
                         href={`#${nav.id}`}
                         onClick={() => { setToggle(false); setActive(nav.title); }}
                         className={`
-                          block px-3 py-2 rounded-lg text-[15px] font-medium transition-colors duration-150
+                          block px-3 py-2 rounded-lg text-[14px] font-medium transition-colors duration-150
                           ${active === nav.title
-                            ? "text-white bg-purple-500/15"
+                            ? "text-white bg-white/8"
                             : "text-gray-400 hover:text-white hover:bg-white/5"
                           }
                         `}
@@ -179,7 +183,7 @@ const Navbar = () => {
                   ))}
                 </ul>
 
-                <div className="mt-4 pt-4 border-t border-white/10 flex gap-3">
+                <div className="mt-3 pt-3 border-t border-white/[0.08] flex gap-2">
                   {[
                     { href: "https://github.com/Harshitdongarwar2528", icon: <FaGithub />, label: "GitHub" },
                     { href: "https://linkedin.com/in/harshit-dongarwar", icon: <FaLinkedin />, label: "LinkedIn" },
@@ -190,7 +194,7 @@ const Navbar = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="w-9 h-9 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white text-[18px] transition-colors"
+                      className="w-9 h-9 rounded-md border border-white/10 bg-white/5 flex items-center justify-center text-gray-300 hover:text-white text-[17px] transition-colors"
                     >
                       {icon}
                     </a>
@@ -198,7 +202,7 @@ const Navbar = () => {
                   <a
                     href="#contact"
                     onClick={() => setToggle(false)}
-                    className="flex-1 text-center py-2 rounded-lg text-[13px] font-semibold text-white bg-purple-600/50 hover:bg-purple-600/70 transition-colors"
+                    className="flex-1 text-center py-2 rounded-lg text-[13px] font-semibold text-white border border-white/20 hover:bg-white/10 transition-colors"
                   >
                     Hire Me
                   </a>
@@ -207,6 +211,7 @@ const Navbar = () => {
             )}
           </AnimatePresence>
         </div>
+
       </div>
     </motion.nav>
   );
